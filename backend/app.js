@@ -14,7 +14,6 @@ app.use(
     tempFileDir: "/tmp/",
   })
 );
-app.use(fileUpload());
 
 const user = require("./routes/user");
 
