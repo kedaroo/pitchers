@@ -7,7 +7,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase-config";
 
 const AuthContext = createContext();
@@ -21,15 +21,16 @@ const AuthProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const [user, setUser] = useState();
-  const [idtoken, setIdtoken] = useState();
+  const [user, setUser] = useState(null);
+  const [idtoken, setIdtoken] = useState(null);
   const navigate = useNavigate();
 
   function createUser() {
     createUserWithEmailAndPassword(auth, signinUser.email, signinUser.password)
       .then((res) => {
-        console.log(res.user);
+        setUser(res.user);
         res.user.getIdToken().then((token) => setIdtoken(token));
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
@@ -40,21 +41,13 @@ const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword(auth, loginUser.email, loginUser.password)
       .then((res) => {
         setUser(res.user);
+        console.log(user);
         res.user.getIdToken().then((token) => setIdtoken(token));
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
       });
-  }
-
-  function signinWithGoogle() {
-    signInWithPopup(auth, new GoogleAuthProvider())
-      .then((res) => {
-        setUser(res.user);
-        res.user.getIdToken().then((token) => setIdtoken(token));
-        navigate("/profile");
-      })
-      .catch((err) => console.log(err));
   }
 
   function logout() {
@@ -82,7 +75,6 @@ const AuthProvider = ({ children }) => {
         setSignupUser,
         createUser,
         signinUser,
-        signinWithGoogle,
         logout,
         user,
         setIdtoken,

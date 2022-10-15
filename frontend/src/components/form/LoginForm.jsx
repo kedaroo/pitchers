@@ -1,15 +1,16 @@
-import { useAuth } from "../context/auth-context";
+import { useAuth } from "../../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
-  const { signupUser, setSignupUser, createUser, signinWithGoogle } =
-    useAuth();
+  const { loginUser, setLoginUser, signinUser } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <>
       <div className="container px-4 max-w-6xl mx-auto my-8">
         <div className="w-full max-w-xl mx-auto">
-          <form className="LgnForm max-w-sm mx-auto  shadow-lg bg-white rounded-lg pt-6 pb-8 mb-4 px-8">
-            <h3 className="font-bold text-center">Sign Up</h3>
+          <div className="LgnForm max-w-sm mx-auto  shadow-lg bg-white rounded-lg pt-6 pb-8 mb-4 px-8">
+            <h3 className="font-bold text-center text-2xl">Log In</h3>
             <div className="MskForm">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -20,9 +21,9 @@ export const LoginForm = () => {
                   id="email"
                   type="text"
                   placeholder="Email"
-                  value={signupUser.email}
+                  value={loginUser.email}
                   onChange={(e) =>
-                    setSignupUser({ ...signupUser, email: e.target.value })
+                    setLoginUser({ ...loginUser, email: e.target.value })
                   }
                 />
               </div>
@@ -35,33 +36,31 @@ export const LoginForm = () => {
                   id="password"
                   type="password"
                   placeholder="******************"
-                  value={signupUser.password}
+                  value={loginUser.password}
                   onChange={(e) =>
-                    setSignupUser({ ...signupUser, password: e.target.value })
+                    setLoginUser({ ...loginUser, password: e.target.value })
                   }
                 />
-                {/* <p className="text-red-500 text-xs italic">Please choose a password.</p> */}
               </div>
-              <div className="align-center">
+              <div className="LgnSm my-4 max-w-sm text-center">
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded focus:outline-none focus:shadow-outline"
-                  onClick={createUser}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={signinUser}
                 >
-                  Sign Up
+                  Log In
                 </button>
               </div>
-              <p className="font-bold text-center">Or</p>
-              <div className="LgnSm my-4 max-w-sm text-center">
-                <p className="LgnFb p-2 block bg-blue-500 rounded-sm text-white md:hover:text-black-600 my-2 font-bold" onClick={signinWithGoogle}>
-                  Sign up with Gmail
+              <div className="text-center">
+                <p className="font-bold">Don't have an account ?</p>
+                <p
+                  className="underline cursor-pointer"
+                  onClick={() => navigate("/")}
+                >
+                  Create now
                 </p>
               </div>
-              <div>
-                <p className="font-bold">Have account ?</p>
-                <p>Log In</p>
-              </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>
