@@ -15,9 +15,10 @@
 
 
 ## Features 🎊
-- Pitch your idea in an engaging short video in < 1 min.
-- Show your love for the idea by dropping likes and comments.
-- Reach out to your favorite founders through DMs.
+- Pitch your idea in an **engaging short video** in < 1 min.
+- Show your love for the idea by dropping **likes** and **comments**.
+- Filter pitches based on **business category (Fintech, Edtech)**.
+- Reach out to your favorite founders through **DMs**.
 
 ## Tech Stack 👩‍💻
 - React JS
