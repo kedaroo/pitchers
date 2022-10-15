@@ -4,11 +4,10 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
-  signInWithPopup,
-  GoogleAuthProvider,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase-config";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -21,29 +20,57 @@ const AuthProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const [user, setUser] = useState(null);
-  const [idtoken, setIdtoken] = useState(null);
+  const [user, setUser] = useState();
+  const [idtoken, setIdtoken] = useState();
   const navigate = useNavigate();
 
-  function createUser() {
-    createUserWithEmailAndPassword(auth, signinUser.email, signinUser.password)
-      .then((res) => {
-        setUser(res.user);
-        res.user.getIdToken().then((token) => setIdtoken(token));
-        navigate("/profile");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //   function createUser() {
+  //     createUserWithEmailAndPassword(auth, signupUser.email, signupUser.password)
+  //       .then((res) => {
+  //         setUser(res.user);
+  //         console.log(user);
+  //         res.user.getIdToken().then((token) => {
+  //           setIdtoken(token);
+  //           navigate("/profile");
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+
+  const createUser = async () => {
+    const data = await createUserWithEmailAndPassword(
+      auth,
+      signupUser.email,
+      signupUser.password
+    );
+
+    setUser(data.user);
+    setIdtoken(data.user.getIdToken());
+    const info = await axios.post(
+      "https://hackout-2022-backend.herokuapp.com/api/v1/users/signup",
+      {},
+      {
+        headers: {
+          authorization: idtoken,
+        },
+      }
+    );
+    console.log(user);
+    console.log(idtoken)
+    navigate("/profile");
+  };
 
   function signinUser() {
     signInWithEmailAndPassword(auth, loginUser.email, loginUser.password)
       .then((res) => {
         setUser(res.user);
         console.log(user);
-        res.user.getIdToken().then((token) => setIdtoken(token));
-        navigate("/profile");
+        res.user.getIdToken().then((token) => {
+          setIdtoken(token);
+          navigate("/profile");
+        });
       })
       .catch((error) => {
         console.log(error);
