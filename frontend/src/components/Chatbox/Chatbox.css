@@ -1,0 +1,13 @@
+.chatbox {
+    height: 500px;
+    width: 300px;
+    border: 1px solid black;
+}
+
+.title {
+    text-align: center;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    background-color:blue;
+    color:white;
+}
