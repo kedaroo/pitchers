@@ -1,0 +1,27 @@
+.chat-window{
+    height: 500px;
+    width: 300px;
+    border: 1px solid black;
+}
+
+.mssg-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+   margin-top: 435px;
+   border-top: 1px solid black;
+}
+
+.mssg-input input{
+    height: 40px;
+    width: 100%;
+    border: none;
+}
+
+.mssg-input button{
+    height: 40px;
+    width: 50%;
+    border: none;
+    outline: none;
+}
