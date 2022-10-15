@@ -21,7 +21,7 @@ exports.createPitchesTableSQL = `CREATE TABLE pitches (
     user_id BINARY(16) NOT NULL,
     category VARCHAR(255) NOT NULL,
     caption TEXT NOT NULL,
-    public_url VARCHAR(255) NOT NULL,
+    public_id VARCHAR(255) NOT NULL,
     secure_url VARCHAR(255) NOT NULL,    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`;
