@@ -1,11 +1,9 @@
 import "./App.css";
-// import Feed from "./components/Feed/Feed";
-import ChatWindow from './components/ChatWindow/ChatWindow'
+import Feed from "./components/Feed/Feed";
 
 function App() {
   return (
-    // <Feed></Feed>
-    <ChatWindow/>
+    <Feed></Feed>
   );
 }
 
