@@ -1,5 +1,9 @@
 const connection = require("../config/database");
-const { CREATE_PITCH, GET_ALL_PITCHES } = require("../services/pitchServices");
+const {
+  CREATE_PITCH,
+  GET_ALL_PITCHES,
+  GET_PITCHES_BY_USER_ID,
+} = require("../services/pitchServices");
 const { v4: uuidv4 } = require("uuid");
 const internalServerError = require("../utils/internalServerError");
 const cloudinary = require("cloudinary");
@@ -57,6 +61,35 @@ exports.createPitch = async (req, res) => {
 exports.getAllPitches = async (req, res) => {
   try {
     connection.query(GET_ALL_PITCHES, (err, results) => {
+      if (err) {
+        console.error(err);
+        return internalServerError(res);
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "pitch created successfully",
+        pitches: results,
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    return internalServerError(res);
+  }
+};
+
+exports.getPitchesByUserId = async (req, res) => {
+  const { user_id } = req.params;
+
+  if (!user_id) {
+    return res.status(400).json({
+      success: false,
+      message: "Please send a valid user id",
+    });
+  }
+
+  try {
+    connection.query(GET_PITCHES_BY_USER_ID, [user_id], (err, results) => {
       if (err) {
         console.error(err);
         return internalServerError(res);
