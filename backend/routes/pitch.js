@@ -4,6 +4,6 @@ const auth = require("../middleware/auth");
 
 const { createPitch } = require("../controllers/pitchController");
 
-router.route("/createPitch").post(createPitch);
+router.route("/createPitch").post(auth, createPitch);
 
 module.exports = router;
