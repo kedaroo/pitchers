@@ -1,0 +1,30 @@
+{
+  "name": "hackout-2022",
+  "version": "1.0.0",
+  "description": "Backend for Hackout 2022 App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kedaroo/hackout-2022.git"
+  },
+  "keywords": [
+    "Express",
+    "Node",
+    "Hackout"
+  ],
+  "author": "Kedar Basutkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kedaroo/hackout-2022/issues"
+  },
+  "homepage": "https://github.com/kedaroo/hackout-2022#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
