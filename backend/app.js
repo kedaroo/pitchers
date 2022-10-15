@@ -16,8 +16,10 @@ app.use(
 );
 
 const user = require("./routes/user");
+const pitch = require("./routes/pitch");
 
 app.use("/api/v1/users", user);
+app.use("/api/v1/pitch", pitch);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "hello world!" });
