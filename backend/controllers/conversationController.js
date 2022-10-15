@@ -78,6 +78,8 @@ exports.getConversationsByUserId = async (req, res) => {
           return internalServerError(res);
         }
 
+        const newResult = results.map()
+
         res.status(200).json({
           success: true,
           message: "like fetched successfully",
