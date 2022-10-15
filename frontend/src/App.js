@@ -9,6 +9,8 @@ import { useAuth } from "./context/auth-context";
 import { useNavigate } from "react-router-dom";
 import { BottomBar } from "./components/BottomBar";
 import { MyProfile } from "./pages/MyProfile";
+import { UserRole } from "./components/onboarding/steps/UserRole";
+import { Form } from "./components/onboarding/steps/Form";
 
 function App() {
   const { user } = useAuth();
@@ -28,7 +30,8 @@ function App() {
           <Routes>
             <Route path="/" element={<SignupForm />} />
             <Route path="/login" element={<LoginForm />} />
-            <Route path="/profile" element={<MyProfile />} />
+            {/* <Route path="/profile" element={<MyProfile />} /> */}
+            <Route path="/profile" element={<Form />} />
           </Routes>
           <div className="bottom-0 fixed">
             <BottomBar />

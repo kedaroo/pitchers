@@ -1,4 +1,5 @@
 import { AiOutlinePlayCircle, AiOutlineMessage, AiOutlinePlusCircle } from "react-icons/ai";
+import {BiUserCircle} from 'react-icons/bi'
 import { useAuth } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +17,7 @@ export const BottomBar = () => {
         grid-cols-4"
     >
       <div className="grid place-items-center">
-        <img
-          className="w-7 h-7 rounded-full"
-          src="https://picsum.photos/200"
-          alt="Rounded avatar"
-          onClick={() => navigate("/profile")}
-        />
+        <BiUserCircle size={30} onClick={() => navigate("/profile")} />
       </div>
       <div className="grid place-items-center">
         <AiOutlinePlusCircle size={30} />
