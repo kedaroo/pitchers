@@ -1,7 +1,10 @@
 import "./App.css";
+import Feed from "./components/Feed/Feed";
 
 function App() {
-  return <div className="App">Hello World</div>;
+  return (
+    <Feed></Feed>
+  );
 }
 
 export default App;
