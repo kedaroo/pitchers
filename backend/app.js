@@ -19,11 +19,13 @@ const user = require("./routes/user");
 const pitch = require("./routes/pitch");
 const like = require("./routes/like");
 const comment = require("./routes/comment");
+const conversation = require("./routes/conversation");
 
 app.use("/api/v1/users", user);
 app.use("/api/v1/pitch", pitch);
 app.use("/api/v1/like", like);
 app.use("/api/v1/comment", comment);
+app.use("/api/v1/conversation", conversation);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "hello world!" });
